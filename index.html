@@ -3,27 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcast_en - English Learning Materials</title>
+    <title>Podcast_en - English Learning Backup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; background: #f9f9f9; }
-        h1 { color: #2c3e50; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 15px 0; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        a { color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --accent: #3498db;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --card-bg: #1e1e1e;
+                --accent: #5dade2;
+            }
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 2.4rem;
+            margin: 0 0 10px 0;
+            color: var(--accent);
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .card i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.35rem;
+        }
+        .card p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
-    <h1>🎙️ Podcast_en - English Learning Backup</h1>
-    <p>這是我的英文學習 Podcast 備份資料庫，包含音檔與文字稿。</p>
-    
-    <h2>可用內容</h2>
-    <ul>
-        <li><a href="Key_Confident_en/" target="_blank">Key_Confident_en - 關鍵表達</a></li>
-        <li><a href="Transcripts_Confident_en/" target="_blank">Transcripts_Confident_en - 完整文字稿</a></li>
-        <li><a href="audio/" target="_blank">audio - 所有音檔</a></li>
-    </ul>
+    <div class="container">
+        <header>
+            <div class="logo">🎙️</div>
+            <h1>Podcast_en</h1>
+            <p class="subtitle">English Learning Backup Materials</p>
+            <p>這是我的英文學習 Podcast 備份資料庫，包含音檔與完整文字稿。</p>
+        </header>
 
-    <p>最後更新：2026 年 4 月</p>
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-key"></i>
+                <h3>Key_Confident_en</h3>
+                <p>關鍵表達與實用句型</p>
+                <a href="Key_Confident_en/" class="btn" target="_blank">前往瀏覽</a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-file-alt"></i>
+                <h3>Transcripts_Confident_en</h3>
+                <p>完整逐字稿與學習筆記</p>
+                <a href="Transcripts_Confident_en/" class="btn" target="_blank">前往瀏覽</a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-music"></i>
+                <h3>Audio Files</h3>
+                <p>所有 Podcast 音檔</p>
+                <a href="audio/" class="btn" target="_blank">前往聆聽</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>最後更新：2026 年 4 月</p>
+            <p>English Learning Resources • Powered by GitHub Pages</p>
+        </footer>
+    </div>
 </body>
 </html>
