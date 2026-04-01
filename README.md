@@ -1,2 +1,2 @@
-# git_test_webpage
+# GitHub Pages
 for english learning
