@@ -1,2 +1,3 @@
 # GitHub Pages
-for english learning
+ideaHub - HTML/CSS
+InkLeaf - Hugo Action
