@@ -77,6 +77,49 @@
 
         .post-content p { margin-bottom: 25px; }
 
+        /* 近期文章 */
+        .recent-posts {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .recent-posts h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .recent-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recent-posts ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            gap: 16px;
+            align-items: baseline;
+        }
+
+        .recent-posts ul li .post-date {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            white-space: nowrap;
+        }
+
+        .recent-posts ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .recent-posts ul li a:hover {
+            color: var(--primary-green);
+        }
+
         /* 訪客計數樣式 */
         .visitor-stats {
             margin-top: 20px;
@@ -137,6 +180,16 @@
                 <p>之所以選擇<strong>米色與淡綠色</strong>，是希望在這個資訊爆炸的時代，提供一個像紙質書本一樣安靜的閱讀空間。</p>
                 </section>
         </article>
+
+        <section class="recent-posts">
+            <h2>近期文章</h2>
+            <ul>
+                <li>
+                    <span class="post-date">2026/04/07</span>
+                    <a href="post1.html">5 分鐘理解 Oracle Agile PLM（產品生命週期管理系統）</a>
+                </li>
+            </ul>
+        </section>
 
         <div class="visitor-stats">
             本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
