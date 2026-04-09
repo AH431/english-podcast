@@ -1,6 +1,7 @@
 # GitHub Pages
 ideaHub - HTML/CSS
 
+**04/07**
 post-template.html 建立完成。
 
 往後新增文章的流程：
@@ -14,6 +15,7 @@ post-template.html 建立完成。
 (本地端先瀏覽../ideaHub/postX.html)
 
 ---
+**04/08**
 把HTML+CSS 框架整個當成 template 檔
 
 轉檔工具：
@@ -31,3 +33,16 @@ pip install markdown jinja2 beautifulsoup4
 
 每天使用超簡單：
 python md_to_html.py 今天文章.md 今天文章.html
+
+---
+**04/09**
+日誌顯示 Jekyll 正在嘗試渲染你的 Markdown 檔案（例如 Apple_PLM_Truth.md），但可能因為某些格式或佈局設定與 Jekyll 的預設主題不相容而導致編譯中斷。
+
+既然你已經寫好了完整的 HTML，最快速且徹底的解決方案如下：
+
+解決方法：強制跳過 Jekyll 編譯（最推薦）
+既然你使用的是自己寫的 index.html 和 style.css，你並不需要 Jekyll 幫你轉檔。請依照以下步驟操作：
+
+建立一個新檔案： 在你的 GitHub 專案根目錄下（與 index.html 同一層），建立一個檔案。
+
+命名為： .nojekyll（注意前面有一個點，且沒有任何副檔名）。
