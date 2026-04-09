@@ -1,4 +1,4 @@
-# GitHub Pages
+# GitHub Pages Update Log
 ideaHub - HTML/CSS
 
 **04/07**
@@ -18,7 +18,7 @@ post-template.html 建立完成。
 **04/08**
 把HTML+CSS 框架整個當成 template 檔
 
-轉檔工具：
+測試轉檔工具：
 - 輸入：任意 .md 檔案
 - 輸出：完整的 .html 檔案（把 MD 轉成 HTML 內容後，塞進 template 的 <article> 或指定區塊）
 - 要支援：Markdown 標題、圖片、程式碼區塊、表格、內嵌 YouTube 等
@@ -46,3 +46,8 @@ python md_to_html.py 今天文章.md 今天文章.html
 建立一個新檔案： 在你的 GitHub 專案根目錄下（與 index.html 同一層），建立一個檔案。
 
 命名為： .nojekyll（注意前面有一個點，且沒有任何副檔名）。
+
+---
+**04/10**
+新增分頁：所有文章、關於我
+修改index文章卡片超連結按鈕範圍 (整張卡片)
