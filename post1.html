@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ideaHub | 數位花園</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <title>ideaHub | Oracle Agile PLM（產品生命週期管理系統）</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2290%22 font-size=%2290%22>🌿</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,87 +12,164 @@
 
     <nav>
         <a href="index.html" class="logo">ideaHub</a>
-        <div class="meta">
-            <a href="https://github.com/AH431" style="color: inherit; text-decoration: none;">GitHub</a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="archive.html">所有文章</a>
+            <a href="about.html">關於我</a>
+            <a href="https://github.com/AH431" target="_blank" rel="noopener">GitHub</a>
         </div>
     </nav>
 
-    <main>
+    <main class="article-container">
         <article>
             <header class="post-header">
-                <h1>Oracle Agile PLM (產品生命週期管理系統)</h1>
-                <div class="meta">
-                    <span>2026年4月6日</span>
+                <h1>5 分鐘理解 Oracle Agile PLM（產品生命週期管理系統）</h1>
+                <div class="post-meta">
+                    <span>2026 年 4 月 6 日</span>
                     <span>•</span>
                     <span>5 分鐘閱讀</span>
+                    <span>•</span>
+                    <span>作者：Sunny</span>
                     <span id="busuanzi_container_page_pv" style="display:none;">
-                        • 閱讀量 <span id="busuanzi_value_page_pv"></span> 次
+                        • 本文閱讀量 <span id="busuanzi_value_page_pv"></span> 次
                     </span>
                 </div>
             </header>
 
-            <section class="post-content">
-                <p>這是我的 5 分鐘攻略，關於 <strong>Oracle Agile PLM（產品生命週期管理系統）</strong>的核心定義、模組功能、管理機制以及企業效益。</p>
+            <!-- Featured Image -->
+            <figure class="featured-image">
+                <img src="static/Oracle Agile PLM.jpg" alt="Oracle Agile PLM 系統概念圖">
+                <figcaption>Oracle Agile PLM 與產品生命週期示意圖</figcaption>
+            </figure>
 
-                <h3>1. 產品生命週期管理 (PLM) 核心定義</h3>
-                <p>PLM 是由「產品 (Product)」、「生命週期 (Lifecycle)」與「管理 (Management)」三個詞組成。其核心在於將產品從<strong>構思到退役</strong>（從導入、成長、成熟到衰退）的所有資訊，在單一數位平台下進行高效且系統化的管理。Agile PLM 被定位為企業研發與產品資料的<strong>單一真實來源 (Single Source of Truth)</strong>。</p>
+            <div class="content-layout">
+
+            <!-- HackMD 風格：左側 TOC -->
+            <div class="toc-sidebar">
+                <nav class="toc" aria-label="文章目錄">
+                    <h4>本文目錄</h4>
+                    <ul>
+                        <li><a href="#section1">1. 產品生命週期管理核心定義</a></li>
+                        <li><a href="#section2">2. 六大核心模組與功能</a></li>
+                        <li><a href="#section3">3. 物料清單 (BOM) 管理機制</a></li>
+                        <li><a href="#section4">4. 系統管控與整合架構</a></li>
+                        <li><a href="#section5">5. 企業導入效益</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 正文區域 -->
+            <div class="post-main-content">
+                <section class="post-content">
+                    <h3 id="section1">1. 產品生命週期管理 (PLM) 核心定義</h3>
+                <p>PLM 是由「產品 (Product)」、「生命週期 (Lifecycle)」與「管理 (Management)」三個詞組成。其核心在於將產品從<strong>構思到退役</strong>的所有資訊，在單一數位平台下進行高效且系統化的管理。</p>
+                
+                <blockquote>
+                    Agile PLM 被定位為企業研發與產品資料的單一真實來源 (Single Source of Truth)。
+                </blockquote>
+                
                 <ul>
-                    <li><strong>關鍵生命週期階段</strong>：IBP (初始商業計畫) → EVT (工程驗證) → DVT (設計驗證) → PVT (生產驗證) → MP (大量生產) → EOL (生命中止)</li>
+                    <li><strong>關鍵生命週期階段</strong>：IBP → EVT → DVT → PVT → MP → EOL</li>
                 </ul>
-                <div class="keywords">英文關鍵詞：Product Lifecycle Management (PLM), Single Source of Truth, Introduction / Growth / Maturity / Decline</div>
 
-                <h3>2. 六大核心模組與功能</h3>
+                <div class="keywords">
+                    <span>Product Lifecycle Management</span>
+                    <span>Single Source of Truth</span>
+                    <span>PLM</span>
+                </div>
+
+                <h3 id="section2">2. 六大核心模組與功能</h3>
                 <p>Agile PLM 透過不同的模組來處理複雜的業務需求：</p>
                 <ul>
-                    <li><strong>產品協同 (PC, Product Collaboration)</strong>：最核心的模組，管理料號、<strong>物料清單 (BOM)</strong>、文件、製造商資訊及變更流程。</li>
-                    <li><strong>產品組合管理 (PPM, Product Portfolio Management)</strong>：管理專案進度、資源分配（人力）、時程與預算，縮短研發週期。</li>
-                    <li><strong>產品品質管理 (PQM, Product Quality Management)</strong>：處理品質事件（如 NCR、CAPA、客訴），並與工程變更緊密關聯。</li>
-                    <li><strong>產品成本管理 (PCM, Product Cost Management)</strong>：管理產品成本並與供應商進行即時更新。</li>
-                    <li><strong>產品管治與合規 (PG&amp;C, Product Governance &amp; Compliance)</strong>：管理環境政策、法律法規（如 RoHS、REACH）與合規性文件。</li>
-                    <li><strong>工程協同 (EC, Engineering Collaboration)</strong>：將 CAD 工具與 PLM 整合，直接將設計檔案轉成 BOM 架構。</li>
-                    <li><strong>關鍵機制</strong>：<strong>線上檢視器 (EV, Enterprise Visualization)</strong> 允許在瀏覽器中查看 2D/3D 圖面，支援 450 多種檔案格式。</li>
+                    <li><strong>產品協同 (PC)</strong>：管理料號、物料清單 (BOM)、文件、製造商資訊及變更流程。</li>
+                    <li><strong>產品組合管理 (PPM)</strong>：管理專案進度、資源與預算。</li>
+                    <li><strong>產品品質管理 (PQM)</strong>：處理 NCR、CAPA、客訴等品質事件。</li>
+                    <li><strong>產品成本管理 (PCM)</strong>：即時控管產品成本。</li>
+                    <li><strong>產品管治與合規 (PG&amp;C)</strong>：管理 RoHS、REACH 等法規合規。</li>
+                    <li><strong>工程協同 (EC)</strong>：CAD 工具與 PLM 整合。</li>
                 </ul>
-                <div class="keywords">英文關鍵詞：Product Collaboration (PC), Product Portfolio Management (PPM), Product Quality Management (PQM), Engineering Change Order (ECO)</div>
 
-                <h3>3. 物料清單 (BOM) 管理機制</h3>
+                <div class="keywords">
+                    <span>Product Collaboration</span>
+                    <span>BOM Management</span>
+                    <span>Engineering Change Order</span>
+                    <span>Oracle Agile PLM</span>
+                </div>
+
+                <h3 id="section3">3. 物料清單 (BOM) 管理機制</h3>
                 <p>BOM 是 PLM 的基石，列出所有子組件、零件及原始材料。</p>
                 <ul>
-                    <li><strong>100% BOM</strong>：可用於生產最終產品的完整清單。</li>
-                    <li><strong>120% / 150% BOM</strong>：包含所有選配件或替代件的配置清單，生產前需轉換為 100% BOM。</li>
-                    <li><strong>變更與修訂 (Revision)</strong>：已發佈 (Released) 的 BOM 若需修改，必須透過<strong>工程變更令 (ECO)</strong> 進行「<strong>紅線標記 (Redlining)</strong>」，清楚顯示舊值與新值的差異。</li>
+                    <li><strong>100% BOM</strong>：用於生產的最終完整清單</li>
+                    <li><strong>120% / 150% BOM</strong>：包含選配件與替代件的配置清單</li>
+                    <li><strong>工程變更令 (ECO)</strong>：透過紅線標記 (Redlining) 進行版本控制</li>
                 </ul>
-                <div class="keywords">英文關鍵詞：Bill of Materials (BOM), Redlining, Revision Control, 150% BOM</div>
 
-                <h3>4. 系統管控與整合架構</h3>
-                <ul>
-                    <li><strong>智慧型規則 (SmartRules)</strong>：系統管理員透過設定規則來控制權限，例如是否「允許 (Allow)」、「禁止 (Disallow)」或「警告 (Warning)」特定操作（如刪除附件、BOM 遞迴）。</li>
-                    <li><strong>系統整合</strong>：Agile PLM 可與 <strong>ERP（企業資源規劃）</strong>、<strong>CRM（客戶關係管理）</strong> 及 <strong>SCM（供應鏈管理）</strong> 系統串接。特別是與 Oracle E-Business Suite (EBS) 整合，可實現料號、BOM 及 ECO 狀態的雙向同步。</li>
-                </ul>
-                <div class="keywords">英文關鍵詞：SmartRules, Integration, ERP / CRM / SCM, Synchronization</div>
+                <div class="keywords">
+                    <span>Bill of Materials</span>
+                    <span>150% BOM</span>
+                    <span>Redlining</span>
+                </div>
 
-                <h3>5. 企業導入效益</h3>
+                <h3 id="section4">4. 系統管控與整合架構</h3>
                 <ul>
-                    <li><strong>加速產品開發</strong>：縮短產品上市 (Time to Market) 與量產時間。</li>
-                    <li><strong>降低成本與風險</strong>：減少報廢、重工費用，精確控管文件版本，降低引用錯誤圖面的製造成本。</li>
-                    <li><strong>提升品質與透明度</strong>：透過結構化的品質管理流程，提升客訴處理能力並支持 ISO 等品質體系。</li>
+                    <li><strong>SmartRules</strong>：智慧型規則引擎控制權限與操作</li>
+                    <li><strong>系統整合</strong>：與 ERP、CRM、SCM 雙向同步，特別與 Oracle EBS 高度整合</li>
                 </ul>
-                <div class="keywords">英文關鍵詞：Time to Market, Cost Reduction, Quality Improvement, Visibility</div>
+
+                <div class="keywords">
+                    <span>SmartRules</span>
+                    <span>ERP Integration</span>
+                </div>
+
+                <h3 id="section5">5. 企業導入效益</h3>
+                <ul>
+                    <li>加速產品上市時間（Time to Market）</li>
+                    <li>降低報廢、重工與文件錯誤成本</li>
+                    <li>提升品質管控與跨部門透明度</li>
+                </ul>
+
+                <div class="keywords">
+                    <span>Time to Market</span>
+                    <span>Cost Reduction</span>
+                    <span>Quality Improvement</span>
+                </div>
             </section>
-        </article>
+            <!-- ==================== 優化後的文末區塊 ==================== -->
+            <div class="post-footer">
+                <!-- 三個按鈕 -->
+                <div class="post-navigation">
+                    <div class="nav-buttons">
+                        <a href="index.html" class="btn btn-secondary">← 回到首頁</a>
+                        <a href="#" class="btn btn-top">↑ 回到頂端</a>                        
+                        <a href="post2.html" class="btn btn-primary">下一篇文章 →</a>
+                    </div>
+                </div>
+               
 
-        <div class="visitor-stats">
-            本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
-        </div>
-
-        <section id="comment-section">
+                <!-- 訪客統計（本站總訪問量 + 本文閱讀量） -->
+                <div class="visitor-stats-group">
+                    <div class="visitor-stats">
+                        本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
+                    </div>
+                    <div class="visitor-stats">
+                        本文閱讀量：<span id="busuanzi_value_page_pv"></span> 次
+                    </div>
+                </div>
+            </div>
+            <section id="comment-section">
             <h3>交流與討論</h3>
             <br>
             <p style="font-size: 0.9rem; color: var(--secondary-text);">（留言系統載入中... 請參考下方說明設定）</p>
         </section>
+            <!-- ==================== 文末結束 ==================== -->
+            </div><!-- end post-main-content -->
+            </div><!-- end content-layout -->
+
+        </article>
     </main>
 
     <footer>
-        <p>&copy; 2026 ideaHub. Powered by GitHub Pages.</p>
+        <p>&copy; 2026 ideaHub • Made with ❤️ in Taipei • Powered by GitHub Pages</p>
     </footer>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

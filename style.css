@@ -1,25 +1,31 @@
 /* =============================================
-   ideaHub — 全域樣式表
+   ideaHub — 全域樣式表 (2026版)
    ============================================= */
 
 /* --- CSS 變數 (主題設定) --- */
 :root {
-    --bg-color: #FAF9F6;          /* 優雅米色 */
-    --text-color: #292929;        /* 深灰色文字 */
-    --primary-green: #2D5A27;     /* 森林綠 */
-    --accent-green: #E8F3E8;      /* 極淺綠 (區塊背景) */
+    --bg-color: #FAF9F6;
+    --text-color: #292929;
+    --primary-green: #2D5A27;
+    --accent-green: #E8F3E8;
     --secondary-text: #6B6B6B;
     --border-color: #e0e0e0;
-    --max-width: 700px;
-    --font-body: 'Noto Sans TC', sans-serif;
-    --font-serif: 'Noto Serif TC', serif;
+    --card-bg: #ffffff;
+    --shadow-sm: 0 2px 12px rgba(45, 90, 39, 0.08);
+    --shadow-md: 0 10px 25px rgba(45, 90, 39, 0.12);
+    --max-width: 720px;
+    --font-body: 'Noto Sans TC', system-ui, sans-serif;
+    --font-serif: 'Noto Serif TC', Georgia, serif;
     --font-size-base: 1.1rem;
 }
 
-/* --- 基底重置 --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- 基底重置與全域樣式 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* --- 全域樣式 --- */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -33,69 +39,102 @@ body {
 nav {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 40px 0 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     color: var(--primary-green);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
-/* --- 主要容器 --- */
+.nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 1.02rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    color: var(--primary-green);
+}
+
+/* --- 主要容器（非文章頁用） --- */
 main {
     max-width: var(--max-width);
     margin: 0 auto;
 }
 
-/* --- 文章標頭 --- */
-.post-header { margin-bottom: 40px; }
+/* --- 文章標頭與 Meta --- */
+.post-header {
+    margin-bottom: 48px;
+}
 
 h1 {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
-    line-height: 1.2;
-    margin-bottom: 15px;
+    font-size: 2.55rem;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    font-weight: 700;
 }
 
-.meta {
+.post-meta {
     color: var(--secondary-text);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
+.post-meta span {
+    display: inline-flex;
+    align-items: center;
 }
 
 /* --- 文章內容 --- */
 .post-content {
+    max-width: 720px;
+    margin: 60px auto 0;
     font-size: var(--font-size-base);
-    margin-bottom: 60px;
+    line-height: 1.85;
     text-align: justify;
 }
 
-.post-content p { margin-bottom: 25px; }
+.post-content p {
+    margin-bottom: 34px;
+}
 
 .post-content h3 {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.28rem;
     color: var(--primary-green);
-    margin: 40px 0 12px;
-    padding-bottom: 6px;
+    margin: 52px 0 16px;
+    padding-bottom: 8px;
     border-bottom: 2px solid var(--accent-green);
 }
 
 .post-content ul {
     list-style: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 26px 0;
     padding: 0;
 }
 
 .post-content ul li {
-    padding: 4px 0 4px 1.2em;
+    padding: 6px 0 6px 1.4em;
     position: relative;
 }
 
@@ -104,106 +143,426 @@ h1 {
     position: absolute;
     left: 0;
     color: var(--primary-green);
+    font-weight: bold;
 }
 
-.post-content .keywords {
+/* 有序清單 */
+.post-content ol {
+    padding-left: 1.8em;
+    margin: 0 0 26px 0;
+}
+
+.post-content ol li {
+    padding: 6px 0;
+    line-height: 1.8;
+}
+
+/* Blockquote 樣式（Medium 風格） */
+.post-content blockquote {
+    border-left: 5px solid var(--primary-green);
     background: var(--accent-green);
-    border-left: 3px solid var(--primary-green);
-    padding: 8px 14px;
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    margin: 12px 0 24px;
-    border-radius: 0 6px 6px 0;
+    padding: 28px 32px;
+    margin: 40px 0;
+    border-radius: 0 8px 8px 0;
+    color: #3f3f3f;
+    font-size: 1.05rem;
+    line-height: 1.75;
 }
 
-/* --- 近期文章 (首頁) --- */
+/* --- 表格樣式 --- */
+.post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 0.97rem;
+}
+
+.post-content th,
+.post-content td {
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.post-content th {
+    background: var(--accent-green);
+    color: var(--primary-green);
+    font-weight: 600;
+    font-family: var(--font-serif);
+}
+
+.post-content tr:nth-child(even) td {
+    background: #f9f9f7;
+}
+
+/* --- 現代標籤樣式 --- */
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 28px 0 32px;
+}
+
+.keywords span {
+    background: var(--accent-green);
+    color: var(--primary-green);
+    font-size: 0.86rem;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+/* --- 文章目錄 (Table of Contents) --- */
+.toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 24px 22px;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.97rem;
+    position: sticky;
+    top: 20px;
+    width: 160px;
+    margin-left: calc(-160px - 30px); /* 右框線距正文左側 30px */
+}
+
+.toc h4 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--primary-green);
+    margin-bottom: 14px;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc li {
+    padding: 6px 0;
+}
+
+.toc a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.toc a:hover,
+.toc a:focus {
+    color: var(--primary-green);
+}
+
+/* --- 近期文章卡片 --- */
 .recent-posts {
-    margin-top: 60px;
-    padding-top: 40px;
+    margin-top: 70px;
+    padding-top: 48px;
     border-top: 1px solid var(--border-color);
 }
 
 .recent-posts h2 {
     font-family: var(--font-serif);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--primary-green);
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
-/* --- 文章卡片模板 (.post-card)
-   使用方式：
-   <div class="post-card">
-       <div class="post-card-meta">
-           <span>日期</span>
-           <span>閱讀時間</span>
-       </div>
-       <h3><a href="postN.html">文章標題</a></h3>
-       <p class="post-card-excerpt">一兩句摘要</p>
-   </div>
-   ------------------------------------------- */
 .post-card {
-    padding: 24px 0;
-    border-bottom: 1px solid #f0f0f0;
+    background: var(--card-bg);
+    padding: 28px 26px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.post-card:last-child { border-bottom: none; }
+.post-card:last-child {
+    margin-bottom: 0;
+}
+
+.post-card:hover {
+    border-color: var(--accent-green);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
 
 .post-card-meta {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--secondary-text);
     display: flex;
-    gap: 12px;
-    margin-bottom: 6px;
+    gap: 14px;
+    margin-bottom: 10px;
 }
 
 .post-card h3 {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-bottom: 6px;
+    font-size: 1.18rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.35;
 }
 
 .post-card h3 a {
     color: var(--text-color);
     text-decoration: none;
+    transition: color 0.25s ease;
 }
 
-.post-card h3 a:hover { color: var(--primary-green); }
+.post-card h3 a:hover {
+    color: var(--primary-green);
+}
 
 .post-card-excerpt {
-    font-size: 0.9rem;
+    font-size: 0.96rem;
     color: var(--secondary-text);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* --- 訪客計數 --- */
 .visitor-stats {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: var(--primary-green);
+    margin-top: 20px;  /* 數值越大，間隔越開 */
     background: var(--accent-green);
-    padding: 5px 12px;
-    border-radius: 20px;
-    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    color: var(--primary-green);
+}
+
+/* 訪客統計群組 */
+.visitor-stats-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 /* --- 留言區 --- */
 #comment-section {
-    margin-top: 80px;
-    padding-top: 40px;
+    margin-top: 90px;
+    padding-top: 48px;
     border-top: 1px solid var(--border-color);
 }
 
 /* --- 頁尾 --- */
 footer {
     text-align: center;
-    padding: 60px 0;
+    padding: 80px 0 60px;
     color: var(--secondary-text);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 100px;
 }
 
-/* --- 響應式微調 --- */
+/* --- 響應式調整（小螢幕全域） --- */
+@media (max-width: 680px) {
+    h1 {
+        font-size: 2.1rem;
+    }
+
+    nav {
+        padding: 28px 0 40px;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        gap: 20px;
+        font-size: 1rem;
+    }
+
+    .post-card {
+        padding: 24px 20px;
+    }
+}
+
+/* --- Focus 可訪問性增強 --- */
+a:focus-visible {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ==================== 文章底部導航 ==================== */
+.post-navigation {
+    margin-bottom: 20px;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 1.02rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+    min-width: 160px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-top      { background: var(--accent-green); color: var(--primary-green); border-color: var(--accent-green); }
+.btn-primary  { background: var(--primary-green); color: white; border-color: var(--primary-green); }
+.btn-secondary { background: transparent; color: var(--secondary-text); border: 1px solid var(--border-color); }
+
+.btn-top:hover      { background: var(--primary-green); color: white; border-color: var(--primary-green); }
+.btn-primary:hover  { background: #23421f; border-color: #23421f; }
+.btn-secondary:hover { background: var(--accent-green); color: var(--primary-green); border-color: var(--accent-green); }
+
+/* 喜歡這篇文章按鈕 */
+.post-engagement {
+    text-align: center;
+    margin: 32px 0 40px;
+}
+
+.post-engagement p {
+    font-size: 1.08rem;
+    color: var(--secondary-text);
+    margin-bottom: 14px;
+}
+
+.like-btn {
+    background: var(--accent-green);
+    color: var(--primary-green);
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+    background: var(--primary-green);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ==================== HackMD 風格左側 TOC 版面 ==================== */
+
+/* 文章頁最外層容器：置中、限寬 */
+.article-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* 正文欄容器：與標題同寬置中 */
+.content-layout {
+    display: flex;
+    align-items: flex-start;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* 左側 TOC 欄：flex 寬度為 0，不擠壓正文欄；align-self: stretch 讓高度撐滿文章，sticky 才有範圍可動 */
+.toc-sidebar {
+    width: 0;
+    flex-shrink: 0;
+    overflow: visible;
+    align-self: stretch;
+}
+
+/* 右側正文欄：填滿 content-layout */
+.post-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Featured Image 與標題：在正文欄內置中，寬度一致 */
+.post-header,
+.featured-image {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-image {
+    margin: 36px auto 32px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.featured-image figcaption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* 文末區塊 */
+.post-footer {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding-top: 20px;
+}
+
+/* ==================== 響應式 ==================== */
+
+/* 小於 920px：sidebar 收回正文上方，所有寬度重置為全寬 */
+@media (max-width: 920px) {
+    .content-layout {
+        max-width: 100%;
+    }
+
+    .toc-sidebar {
+        width: 100%;
+        overflow: hidden;
+        
+    }
+
+    .toc {
+        position: static;
+        width: auto;
+        margin-left: 0;
+    }
+
+    .post-main-content,
+    .post-header,
+    .featured-image,
+    .post-content,
+    .post-footer {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* 小於 600px：按鈕全寬堆疊 */
 @media (max-width: 600px) {
-    h1 { font-size: 2rem; }
-    nav { padding: 20px 0; }
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+    }
 }

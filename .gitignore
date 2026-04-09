@@ -1,1 +1,5 @@
 post-template.html
+
+.claude/
+_test_input.md
+_test_output.html
