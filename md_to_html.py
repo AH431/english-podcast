@@ -108,25 +108,73 @@ def process_markdown_to_html_and_toc(body_md: str):
     if not toc_items:
         return "", str(soup)
 
-    def auto_shorten(text: str, limit: int = 10) -> str:
-        """自動從標題推導精簡 TOC 標籤"""
-        t = re.sub(r'^\d+\.\s*', '', text)                   # 移除 "1. " 數字編號
-        t = re.sub(r'\([^)]+\)', '', t)                       # 移除半型括號 (English)
-        t = re.sub(r'（[^）]*[A-Za-z][^）]*）', '', t)          # 移除全型括號含英文
+    CN_NUM = {'一':'1','二':'2','三':'3','四':'4','五':'5',
+              '六':'6','七':'7','八':'8','九':'9','十':'10'}
+
+    def auto_shorten(text: str) -> str:
+        """自動從標題推導精簡 TOC 標籤（仿照手寫風格）
+
+        規則（依序匹配，學自手寫版 post2.html）：
+          核心觀點N / 第N節 等序號標題 → 加阿拉伯數字前綴，再抽取核心短語：
+            A並非B，而是C  →  A是C
+            A不只是B       →  A
+            X才是Y         →  X + Y（去「的關鍵/重點」後綴）
+            A發生在B       →  A
+            其他           →  取第一個逗號前的子句
+          引言 / 結語 等非序號標題 → 保留 before：after 完整形式
+        """
+        t = re.sub(r'^\d+\.\s*', '', text)   # 移除 "1. " 數字前綴
+        t = re.sub(r'\([^)]+\)', '', t)       # 移除半型括號 (English)，保留（全型）
         t = t.strip()
 
         parts = re.split(r'[：:]', t, maxsplit=1)
         before = parts[0].strip()
-        after = parts[1].strip() if len(parts) > 1 else ''
+        after  = parts[1].strip() if len(parts) > 1 else ''
 
-        # 冒號前若是序號標籤（末尾為數字/中文數字，且 ≤8 字），改用冒號後的內容
-        is_label = bool(re.search(r'[一二三四五六七八九十\d]$', before)) and len(before) <= 8
-        summary = (after if (is_label and after) else before) or t
+        num_m = re.search(r'([一二三四五六七八九十\d]+)$', before)
+        is_label = bool(num_m) and len(before) <= 8
 
-        # 若摘要開頭仍為英文（如 "Oracle Agile PLM：..."），跳過找中文起點
-        summary = re.sub(r'^[A-Za-z0-9\s]+[：:\s]*', '', summary).strip() or summary
+        if is_label and after:
+            num    = auto_shorten.CN_NUM.get(num_m.group(1), num_m.group(1))
+            prefix = f"{num}."
 
-        return summary[:limit] + '…' if len(summary) > limit else summary
+            # 去掉開頭英文品牌名（如 "Oracle Agile PLM："）
+            content = re.sub(r'^[A-Za-z][A-Za-z0-9\s]*[：:]\s*', '', after).strip() or after
+
+            # A並非B，而是C → A是C
+            m = re.search(r'^(.+?)並非.+?，而是(.+)', content)
+            if m:
+                content = m.group(1).strip() + '是' + m.group(2).split('，')[0].strip()
+            else:
+                # A不只是B → A（主題詞即重點，無需後半）
+                m = re.search(r'^(.+?)不只是', content)
+                if m:
+                    content = m.group(1).strip()
+                else:
+                    # X才是Y → XY（逐句匹配，避免抓到「全才」中的「才」）
+                    cai_found = False
+                    for clause in content.split('，'):
+                        m = re.search(r'^(.+?)才是(.+)', clause)
+                        if m:
+                            actor  = m.group(1).strip()
+                            action = re.sub(r'的(?:關鍵|重點|核心|基石|命脈|出路)$', '', m.group(2)).strip()
+                            content = actor + action
+                            cai_found = True
+                            break
+                    if not cai_found:
+                        # A發生在B → A
+                        m = re.search(r'^(.+?)發生在', content)
+                        if m:
+                            content = m.group(1).strip()
+                        else:
+                            content = content.split('，')[0].strip()
+
+            return prefix + content
+
+        # 非序號標題（引言、結語等）→ 保留完整 before：after
+        return (before + '：' + after) if after else before
+
+    auto_shorten.CN_NUM = CN_NUM
 
     # 產生巢狀 TOC HTML（與 post1.html 左側欄一致）
     toc_html = '<nav class="toc" aria-label="文章目錄">\n<h4>本文目錄</h4>\n<ul>'
