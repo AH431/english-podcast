@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ideaHub | NJ_Stream_ERP：W1 進度報告</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2290%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">ideaHub</a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="archive.html">所有文章</a>
+            <a href="about.html">關於我</a>
+            <a href="https://github.com/AH431" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="article-container">
+        <article>
+            <header class="post-header">
+                <h1>NJ_Stream_ERP-進度報告_W1</h1>
+                <div class="post-meta">
+                    <span>2026 年 4 月 12 日</span>
+                    <span>•</span>
+                    <span>6 分鐘閱讀</span>
+                    <span>•</span>
+                    <span>作者：Sunny</span>
+                    <span id="busuanzi_container_page_pv" style="display:none;">
+                        • 本文閱讀量 <span id="busuanzi_value_page_pv"></span> 次
+                    </span>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <figure class="featured-image">
+                <img src="static/ERP_W1.png" alt="NJ_Stream_ERP-進度報告_W1">
+                <figcaption>NJ_Stream_ERP-進度報告_W1</figcaption>
+            </figure>
+
+            <div class="content-layout">
+
+            <!-- HackMD 風格：左側 TOC -->
+            <div class="toc-sidebar">
+                <nav class="toc" aria-label="文章目錄">
+<h4>本文目錄</h4>
+<ul>
+        
+        <li><a href="#1-引言-從荒地到現代化工地的蛻變" title="1. 引言：從荒地到現代化工地的蛻變">1.從荒地到現代化工地</a></li>
+        <li><a href="#2-亮點一-3d-自動列印建築術-引進自動化生產工具" title="2. 亮點一：3D 自動列印建築術——引進自動化生產工具">2.自動化生產工具</a></li>
+        <li><a href="#3-亮點二-耐震結構設計-強大的離線作業地基" title="3. 亮點二：耐震結構設計——強大的離線作業地基">3.強大的離線作業地基</a></li>
+        <li><a href="#4-亮點三-大樓的自動發電機-token-自動刷新機制" title="4. 亮點三：大樓的自動發電機——Token 自動刷新機制">4.Token 自動刷新機制</a></li>
+        <li><a href="#5-亮點四-工程憲法-api-契約的凍結與標準化" title="5. 亮點四：工程憲法——API 契約的凍結與標準化">5.契約的凍結與標準化</a></li>
+        <li><a href="#6-結語-鋼骨已成-室內裝潢即將開始" title="6. 結語：鋼骨已成，室內裝潢即將開始">6.室內裝潢即將開始</a></li></ul>
+</nav>
+            </div>
+
+            <!-- 正文區域 -->
+            <div class="post-main-content">
+                <section class="post-content">
+                    <h2 id="告別手動砌牆的石器時代-nj_stream_erp-如何用-3d-列印術打造耐震級軟體架構">告別手動砌牆的石器時代：NJ_Stream_ERP 如何用 3D 列印術打造耐震級軟體架構？</h2>
+<h3 id="1-引言-從荒地到現代化工地的蛻變">1. 引言：從荒地到現代化工地的蛻變</h3>
+<p>在軟體開發的初期，開發者往往面臨著類似「荒地」的困境：代碼建材散落一地、工人找不到路徑、甚至連施工圖紙都模糊不清。對於專案管理者而言，最深刻的痛點莫過於「環境不對，施工白費」。原本空有代碼建材卻運不進去，指令工人也找不到工地——這正是環境變數（PATH 設定）未通時的混亂寫照。</p>
+<p>本週，<strong>NJ_Stream_ERP</strong> 的開發進度完成了一場華麗的蛻變。我們成功打通了聯外道路與電力，將開發環境從一片荒地轉化為具備自動化施工能力的現代工地。現在只要在門口喊一聲 <code>flutter</code>，全場工人便會立刻報到。這標誌著系統已經跨越了基礎設置的泥淖，正式進入高效、標準化的生產模式，有效降低了初期因環境異質性所產生的技術債風險。</p>
+<h3 id="2-亮點一-3d-自動列印建築術-引進自動化生產工具">2. 亮點一：3D 自動列印建築術——引進自動化生產工具</h3>
+<p>自動化生成的精準施工 在本週的工程中，我們成功導入了 <code>build_runner</code> 與 <code>Drift</code> 套件。這並非傳統意義上的工具安裝，而是引進了一台「3D 自動列印建築機」。透過預先定義好的設計稿（<code>schema.dart</code>），系統能夠一鍵精準生成 12 至 17 個關鍵的底層檔案。</p>
+<p><strong>深度分析與反思</strong> <br/>
+這項變革徹底解決了物件導向語言（Dart）與關聯式資料庫之間的「阻抗失配」（Impedance Mismatch）問題。傳統手寫 SQL 的方式如同「手寫砌牆」，不僅效率低下，更極易因人為疏失導致結構不穩。自動化生成機制確保了資料庫存取層（DAO）與資料模型的高度一致性。從架構師的角度來看，這不僅大幅提升了開發效能，更透過機器生成的程式碼消除人為錯誤，讓維護成本在專案起跑點就降到最低。</p>
+<blockquote>
+<p>「不再需要一磚一瓦（手寫 SQL）去砌牆。
+    只要畫好設計稿（schema.dart），
+    這台機器就會自動把結構精準地噴塗出來。」</p>    
+</blockquote>
+
+<h3 id="3-亮點二-耐震結構設計-強大的離線作業地基">3. 亮點二：耐震結構設計——強大的離線作業地基</h3>
+<p><strong>離線數據的保護機制</strong><br/>
+為了讓這棟 ERP 大樓具備極高的穩定性，我們實作了關鍵的 <code>Schema</code>（包含客戶、產品資料表）以及核心的同步地基——<code>PendingOperations</code>。這被我們稱為系統的「耐震功能」，專門處理複雜的數據一致性挑戰。</p>
+<p><strong>深度分析與反思</strong> <br/>
+在企業級應用中，網路不穩定是常態。將 <code>PendingOperations</code> 嵌入地基，實質上是在實作分散式系統中的「最終一致性」（Eventual Consistency）。這意味著即便工地暫時斷電（斷網），住戶的操作也會先被安全地儲存在骨架結構中，確保資料不丟失；一旦電力恢復，數據便會自動歸位。這種設計賦予了 ERP 系統在極端商業環境下的生存能力，是確保系統高可用性（High Availability）的關鍵技術投資。</p>
+<h3 id="4-亮點三-大樓的自動發電機-token-自動刷新機制">4. 亮點三：大樓的自動發電機——Token 自動刷新機制</h3>
+<p>預判式的電力供應系統 在 <code>SyncProvider</code> 中，我們實作了 Token 自動刷新機制。這個功能如同為大樓配置了智慧「自動發電機」，系統會自動監測存取權杖（Access Token）的效期，並在到期前 5 分鐘自動執行刷新動作。</p>
+<p><strong>深度分析與反思</strong> <br/>
+這是一種典型的「防禦性編程」（Defensive Programming）實踐。我們之所以設定「5 分鐘」的緩衝期，是為了預留空間給網路延遲（Network Latency）與系統時鐘偏差（Clock Skew）。透過這種預判式設計，系統能創造出「無感」的優質用戶體驗，確保運作永不中斷。這種對細節的嚴苛要求，正是判別一個系統是否具備商業級穩定性的標準。</p>
+<h3 id="5-亮點四-工程憲法-api-契約的凍結與標準化">5. 亮點四：工程憲法——API 契約的凍結與標準化</h3>
+<p><strong>定義明確的施工標準</strong> <br/>
+在本週，我們正式凍結了 <code>Auth v1.0</code>與 <code>Sync v1.6</code> 兩份關鍵的 API 契約。這些契約被視為這項工程的「憲法」，不僅是建築執照，更是決定整棟大樓運作效率的靈魂。</p>
+<p><strong>深度分析與反思</strong> <br/>
+契約凍結規定了這棟樓要有幾層（資料表結構）、大門保全如何驗證身分（認證機制），以及最重要的——「電梯怎麼跑」（同步邏輯）。在動工興建房間（UI）之前，確立這份「單一事實來源」（Single Source of Truth）是避免產生「違章建築」的關鍵。這不僅確保了前後端開發的標準化，更避免了因頻繁修改結構而導致的開發停滯，為後續的擴展性奠定了鐵律。</p>
+<h3 id="6-結語-鋼骨已成-室內裝潢即將開始">6. 結語：鋼骨已成，室內裝潢即將開始</h3>
+<p>截至目前，NJ_Stream_ERP 的基礎設施、堅不可摧的鋼骨結構、以及聰明的水電系統（Token 與同步機制）已全數到位。雖然這棟大樓目前看起來還只是充滿冷冽工業感的金屬骨架，但它已經展現出極強的穩定性與前瞻性。</p>
+<p>這場從荒地出發的冒險，已經跨越了最艱難的地基工程。接下來，我們的任務將轉向室內裝潢——也就是用戶介面（UI）的開發，我們將把牆面漆上顏色，放進符合業務邏輯的家具。</p>
+<p><strong>當建築的骨架已經無懈可擊時，我們該如何打造最符合人性化的室內空間，讓使用者在其中流暢運作？</strong> 裝潢工程即將動工，敬請期待下一期的深度側寫。</p>
+                </section>
+
+                <!-- ==================== 文末區塊 ==================== -->
+                <div class="post-footer">
+                    <div class="post-navigation">
+                        <div class="nav-buttons">
+                            <a href="index.html" class="btn btn-secondary">← 回到首頁</a>
+                            <a href="#" class="btn btn-top">↑ 回到頂端</a>
+                            <a href="#" class="btn btn-primary">下一篇文章 →</a>
+                        </div>
+                    </div>
+
+                    <div class="visitor-stats-group">
+                        <div class="visitor-stats">
+                            本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
+                        </div>
+                        <div class="visitor-stats">
+                            本文閱讀量：<span id="busuanzi_value_page_pv"></span> 次
+                        </div>
+                    </div>
+                </div>
+
+                <section id="comment-section">
+                    <h3>交流與討論</h3>
+                    <br>
+                    <p style="font-size: 0.9rem; color: var(--secondary-text);">（留言系統載入中... 請參考下方說明設定）</p>
+                </section>
+            </div><!-- end post-main-content -->
+            </div><!-- end content-layout -->
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ideaHub • Made with ❤️ in Taipei • Powered by GitHub Pages</p>
+    </footer>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
