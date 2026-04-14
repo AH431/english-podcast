@@ -79,6 +79,12 @@ def process_markdown_to_html_and_toc(body_md: str):
             "sane_lists",      # 列表
             "attr_list",       # {: #id} 自訂 id
         ],
+        extension_configs={
+            "codehilite": {
+                "guess_lang": False,   # 不自動猜測語言，避免錯誤標色
+                "css_class": "codehilite",  # 與 style.css 一致的 class 名稱
+            }
+        },
         output_format="html5",
     )
 
@@ -200,6 +206,44 @@ POSTS_DIR = Path(__file__).parent / "content" / "posts"
 OUTPUT_DIR = Path(__file__).parent
 
 
+def auto_fill_nav_urls(output_path: Path, md_text: str) -> tuple[str, dict]:
+    """根據 postN.html 檔名自動推導 prev_url / next_url，並回寫至 md 前言
+
+    Returns:
+        (updated_md_text, nav_dict) — nav_dict 為空表示非 postN.html
+    """
+    m = re.match(r"post(\d+)\.html$", output_path.name, re.IGNORECASE)
+    if not m:
+        return md_text, {}
+
+    n = int(m.group(1))
+    nav = {
+        "prev_url": f"post{n - 1}.html" if n > 1 else "index.html",
+        "next_url": f"post{n + 1}.html",
+    }
+
+    # 若有 frontmatter，更新其中的 prev_url / next_url
+    stripped = md_text.strip()
+    if not stripped.startswith("---"):
+        return md_text, nav
+
+    parts = stripped.split("---", 2)
+    if len(parts) < 3:
+        return md_text, nav
+
+    front, body = parts[1], parts[2]
+
+    for key, value in nav.items():
+        new_front, count = re.subn(
+            rf"^{key}\s*:.*$", f"{key}: {value}", front, flags=re.MULTILINE
+        )
+        if count == 0:
+            new_front = new_front.rstrip("\n") + f"\n{key}: {value}\n"
+        front = new_front
+
+    return f"---{front}---{body}", nav
+
+
 def update_index_card(post_filename: str, metadata: dict, content_html: str):
     """在 index.html 的近期文章區塊自動插入或更新文章卡片（最新排第一）"""
     index_path = OUTPUT_DIR / "index.html"
@@ -296,7 +340,16 @@ def main():
 
     md_text = input_path.read_text(encoding="utf-8")
 
+    # 根據 postN.html 自動推導並回寫 prev_url / next_url
+    updated_md, nav_override = auto_fill_nav_urls(output_path, md_text)
+    if updated_md != md_text:
+        input_path.write_text(updated_md, encoding="utf-8")
+        md_text = updated_md
+        print(f"📝 導航連結已自動填入：{nav_override['prev_url']} ← 本文 → {nav_override['next_url']}")
+
     metadata, body_md = parse_frontmatter_and_body(md_text)
+    if nav_override:
+        metadata.update(nav_override)
 
     # 偵測最後一行是否為 hashtag 關鍵字（如 #WFH #RemoteWork）
     hashtag_html = ""
