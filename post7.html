@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ideaHub | 智慧的表象背後：揭開生成式 AI 運作的「簡單」邏輯 —— 李宏毅老師課程精華解讀</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2290%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">ideaHub</a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="archive.html">所有文章</a>
+            <a href="about.html">關於我</a>
+            <a href="https://github.com/AH431" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="article-container">
+        <article>
+            <header class="post-header">
+                <h1>智慧的表象背後：揭開生成式 AI 運作的「簡單」邏輯 —— 李宏毅老師課程精華解讀</h1>
+                <div class="post-meta">
+                    <span>2026 年 4 月 24 日</span>
+                    <span>•</span>
+                    <span>8 分鐘閱讀</span>
+                    <span>•</span>
+                    <span>作者：Sunny</span>
+                    <span id="busuanzi_container_page_pv" style="display:none;">
+                        • 本文閱讀量 <span id="busuanzi_value_page_pv"></span> 次
+                    </span>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <figure class="featured-image">
+                <img src="static/" alt="智慧的表象背後：揭開生成式 AI 運作的「簡單」邏輯 —— 李宏毅老師課程精華解讀">
+                <figcaption>智慧的表象背後：揭開生成式 AI 運作的「簡單」邏輯 —— 李宏毅老師課程精華解讀</figcaption>
+            </figure>
+
+            <div class="content-layout">
+
+            <!-- HackMD 風格：左側 TOC -->
+            <div class="toc-sidebar">
+                <nav class="toc" aria-label="文章目錄">
+<ul>
+<li class="toc-title">本文目錄</li><ul><li><a href="#真相一-它不是在-思考-而是在玩極致的-機率骰子" title="真相一：它不是在「思考」，而是在玩極致的「機率骰子」">1.AI不是在思考</a></li><li><a href="#真相二-ai-幻覺不是錯誤-而是它的-夢境-本能" title="真相二：AI 幻覺不是錯誤，而是它的「夢境」本能">2.幻覺不是錯誤</a></li><li><a href="#真相三-萬物皆-token-從影像到蛋白質的通用語言" title="真相三：萬物皆 Token，從影像到蛋白質的通用語言">3.萬物皆 Token</a></li><li><a href="#真相四-它沒有記憶-只是個-讀速極快的金魚" title="真相四：它沒有記憶，只是個「讀速極快的金魚」">4.AI沒有記憶</a></li><li><a href="#真相五-語言知識易學-但-物理世界-才是終極挑戰" title="真相五：語言知識易學，但「物理世界」才是終極挑戰">5.「物理世界」的終極挑戰</a></li><li><a href="#結語-ai-時代的人類新任務" title="結語：AI 時代的人類新任務">結語：AI 時代的人類新任務</a></li></ul></ul>
+</nav>
+            </div>
+
+            <!-- 正文區域 -->
+            <div class="post-main-content">
+                <section class="post-content">
+                    <p>當你第一次與 ChatGPT 或 Gemini 對話時，是否曾感到一種近乎恐懼的驚艷？它能寫詩、能修程式碼，甚至能模仿你的語氣寫信。但隨後你可能又會發現，它有時會面不改色地胡說八道。這種「天才」與「騙子」並存的神祕感，常讓大眾誤以為 AI 背後有一個正在思考的數位大腦。</p>
+<p>然而，在台大李宏毅老師的「生成式人工智慧」課程中，他用一個極其樸素的概念拆解了這場數位幻術：<strong>生成式 AI 的本質，其實只是在玩一場「文字接龍」。</strong></p>
+<p>當我們看穿這場接龍的底層邏輯，許多神祕現象都會迎刃而解，你也會發現，所謂的「人工智慧」，其實是從極其簡單的任務中意外誕生的副作用。</p>
+<h3 id="真相一-它不是在-思考-而是在玩極致的-機率骰子">真相一：它不是在「思考」，而是在玩極致的「機率骰子」</h3>
+<p>生成式 AI（大型語言模型，LLM）的核心任務只有一個：預測下一個 <strong>Token（代幣）是什麼。</strong></p>
+<p>以 Llama-3 模型為例，它的「字典」（Vocabulary）裡有高達 128,000 個 Token。當你輸入一個問題時，模型會對這 12萬8千個選項進行打分，計算誰出現在後面的機率最高。</p>
+<p>這裡最有趣的地方在於「擲骰子」的過程（Sampling）：</p>
+<ul>
+<li>機率分佈： 模型不會永遠選機率最高的那個字。為了讓對話更自然，它會根據機率分佈「擲骰子」。</li>
+<li>Top-K 採樣： 為了防止 AI 徹底失控，開發者通常會限制只在機率最高的前幾個選項中擲骰子。如果我們允許機率極低的 Token 出現，AI 就會開始胡言亂語，甚至像課程實作中看到的那樣，毫無徵兆地冒出「XD」或怪異符號。</li>
+</ul>
+<blockquote>
+<p>【Aha! 洞察】 文字接龍聽起來很簡單，但要接得「對」，模型必須在無形中掌握人類的文法結構與邏輯。 intelligence 是為了把接龍玩到極致而產生的「副作用」。正如李宏毅老師所說：「文字接龍從來都不是一件容易的事情。」</p>
+</blockquote>
+<h3 id="真相二-ai-幻覺不是錯誤-而是它的-夢境-本能">真相二：AI 幻覺不是錯誤，而是它的「夢境」本能</h3>
+<p>很多人試圖修復 AI 的「幻覺」（Hallucination），但這其實是誤解了它的本質。AI 背後並沒有連接一個「事實資料庫」，它產生的每一個字，都是在幻覺中接龍出來的結果。</p>
+<blockquote>
+<p>「一切答案都是在幻覺中產生的。你該意外的不是它會犯錯，而是它的夢境中居然有一些跟現實是相符的。」</p>
+</blockquote>
+<p>想像一個被<strong>關在暗無天日的小房間裡的人</strong>，這輩子從未看過外面的世界，只能透過讀過的無數書籍來猜測外界的樣子。這就是 AI。它所有的知識都來自於文字間的統計關聯，而非對現實的體驗。搜尋引擎（RAG）雖然能提供「參考書」來減少錯誤，但只要其核心仍是接龍，AI 就永遠是在「做夢」。</p>
+<h3 id="真相三-萬物皆-token-從影像到蛋白質的通用語言">真相三：萬物皆 Token，從影像到蛋白質的通用語言</h3>
+<p>生成式 AI 之所以能畫圖、唱歌，是因為在 AI 眼中，世界上的一切都可以被切碎成 Token。黃仁勳（Jensen Huang）曾說：「Words, images, video, everything is a token.」</p>
+<ul>
+<li>影像接龍： 產生一張 1024x1024 的圖片需要處理 100 萬個像素，這比寫一部《紅樓夢》的運算量還要巨大。因此，現代技術會先將圖像「壓縮」，例如把 16x16 的區塊轉化為一個 Token，讓模型進行「區塊接龍」。</li>
+<li>跨越生物界： 這種邏輯甚至延伸到生醫領域。蛋白質是由有限種類的胺基酸構成的「有結構物件」，對 AI 來說，生成一段抗癌蛋白質序列，與寫一段 Excel 公式在本質上並無二致。</li>
+</ul>
+<hr/>
+<h3 id="真相四-它沒有記憶-只是個-讀速極快的金魚">真相四：它沒有記憶，只是個「讀速極快的金魚」</h3>
+<p>你是否覺得 AI 能記得你們之前的對話？事實上，模型本身是沒有長久記憶的。</p>
+<p>每次你按下 Enter，模型其實是經歷了一次<strong>「金魚式的重啟」</strong>。為了維持對話連貫，開發者使用了 <strong>Chat Template（聊天模板）</strong> 手腳：它會偷偷把你們過去所有的對話記錄，重新塞進這一次的 Prompt 裡。</p>
+<p>對 AI 而言，它不是「記得」你，而是每次都重新「快速讀一遍」整場對話歷史。這也解釋了為什麼對話越長，運算成本越高，因為它必須處理越來越長的「前置文字」才能接出下一個字。</p>
+<h3 id="真相五-語言知識易學-但-物理世界-才是終極挑戰">真相五：語言知識易學，但「物理世界」才是終極挑戰</h3>
+<p>AI 已經是語言大師，但它對物理世界的理解仍有嚴重的盲區。李宏毅老師在課堂上舉了「水的沸點」為例：</p>
+<ul>
+<li>語言知識： 問「水的沸點是幾度？」AI 會反射性接出「100 度」，因為這對 Token 經常出現在一起。</li>
+<li>世界知識： 如果問「在 0.5 大氣壓下，水的沸點是幾度？」AI 必須真正理解大氣壓力與沸點的物理關係，而非僅靠文字聯想，才能給出正確答案。</li>
+</ul>
+<p>世界知識是無窮無盡的，這正是人類目前無法被取代的地方。我們必須承擔起 Context Engineering（上下文工程） 的責任——提供足夠的環境資訊與物理限制，引導這台強大的聯想引擎走向正確的軌道。</p>
+<h3 id="結語-ai-時代的人類新任務">結語：AI 時代的人類新任務</h3>
+<p>理解了「文字接龍」的本質後，我們不應再盲目地將 AI 視為全知的神諭。相反地，它是一個極其高效、卻對現實盲目的「機率映射工具」。</p>
+<p>在 AI 時代，人類的新任務是學會精準的 <strong>Context Engineering</strong>。既然 AI 是在我們給出的開頭中接龍出未來，那麼，我們給出的資訊品質，將決定它接龍出來的是驚人的智慧，還是荒誕的幻象。</p>
+<p><strong>既然 AI 是在我們的文字中接龍出未來，我們是否準備好給出一個更好的「開頭」？</strong></p>
+                </section>
+
+                <!-- ==================== 文末區塊 ==================== -->
+                <div class="post-footer">
+                    <div class="post-navigation">
+                        <div class="nav-buttons">
+                            <a href="post6.html" class="btn btn-secondary">← 上一篇文章</a>
+                            <a href="#" class="btn btn-top">↑ 回到頂端</a>
+                            <a href="post8.html" class="btn btn-primary">下一篇文章 →</a>
+                        </div>
+                    </div>
+
+                    <div class="visitor-stats-group">
+                        <div class="visitor-stats">
+                            本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
+                        </div>
+                        <div class="visitor-stats">
+                            本文閱讀量：<span id="busuanzi_value_page_pv"></span> 次
+                        </div>
+                    </div>
+                </div>
+
+                <section id="comment-section">
+                    <h3>交流與討論</h3>
+                    <br>
+                    <p style="font-size: 0.9rem; color: var(--secondary-text);">（留言系統載入中... 請參考下方說明設定）</p>
+                </section>
+            </div><!-- end post-main-content -->
+            </div><!-- end content-layout -->
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ideaHub • Made with ❤️ in Taipei • Powered by GitHub Pages</p>
+    </footer>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

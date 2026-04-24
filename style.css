@@ -234,6 +234,16 @@ h1 {
     margin-bottom: 14px;
 }
 
+.toc-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--primary-green);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-color);
+    list-style: none;
+}
+
 .toc ul {
     list-style: none;
 }

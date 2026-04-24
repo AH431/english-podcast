@@ -31,6 +31,7 @@ def parse_frontmatter_and_body(md_text: str):
         "excerpt": "",               # 可選，首頁卡片摘要；空白時自動取第一段
         "prev_url": "index.html",    # 可選
         "next_url": "#",             # 可選
+        "subject": "",               # 可選，TOC 中代詞「它」的替換主詞（如 AI、ERP）
     }
 
     body = md_text.strip()
@@ -66,7 +67,7 @@ def parse_frontmatter_and_body(md_text: str):
     return metadata, body
 
 
-def process_markdown_to_html_and_toc(body_md: str):
+def process_markdown_to_html_and_toc(body_md: str, subject: str = ""):
     """Markdown → HTML + 自動生成左側 TOC（支援中文、h2~h4）"""
     # Markdown 轉 HTML（支援表格、程式碼區塊、圖片、YouTube iframe 等）
     html_body = markdown(
@@ -158,13 +159,16 @@ def process_markdown_to_html_and_toc(body_md: str):
                     content = m.group(1).strip()
                 else:
                     # X才是Y → XY（逐句匹配，避免抓到「全才」中的「才」）
+                    # 去開頭連接詞（但/而/卻）再匹配；actor 以」結尾時加「的」
                     cai_found = False
                     for clause in content.split('，'):
-                        m = re.search(r'^(.+?)才是(.+)', clause)
+                        c = re.sub(r'^[但而卻雖]+', '', clause).strip()
+                        m = re.search(r'^(.+?)才是(.+)', c)
                         if m:
                             actor  = m.group(1).strip()
                             action = re.sub(r'的(?:關鍵|重點|核心|基石|命脈|出路)$', '', m.group(2)).strip()
-                            content = actor + action
+                            joiner = '的' if actor.endswith('」') else ''
+                            content = actor + joiner + action
                             cai_found = True
                             break
                     if not cai_found:
@@ -175,6 +179,16 @@ def process_markdown_to_html_and_toc(body_md: str):
                         else:
                             content = content.split('，')[0].strip()
 
+            # 它 → 文章主詞（從 subject 取得，未設定則不替換）
+            subj = subject
+            if subj:
+                content = re.sub(r'^它', subj, content)
+                # 開頭「主詞 名詞＋否定」且字數>8 → 去掉主詞前綴（名詞本身即重點）
+                if len(content) > 8 and re.match(rf'^{re.escape(subj)}\s+\S+(?:不是|並非)', content):
+                    content = re.sub(rf'^{re.escape(subj)}\s+', '', content)
+            # 去掉非開頭的「」（開頭的保留，如「物理世界」的終極挑戰）
+            content = re.sub(r'(?<=.)「([^」]+)」', r'\1', content)
+
             return prefix + content
 
         # 非序號標題（引言、結語等）→ 保留完整 before：after
@@ -183,7 +197,7 @@ def process_markdown_to_html_and_toc(body_md: str):
     auto_shorten.CN_NUM = CN_NUM
 
     # 產生巢狀 TOC HTML（與 post1.html 左側欄一致）
-    toc_html = '<nav class="toc" aria-label="文章目錄">\n<h4>本文目錄</h4>\n<ul>'
+    toc_html = '<nav class="toc" aria-label="文章目錄">\n<ul>\n<li class="toc-title">本文目錄</li>'
     prev_level = 2
 
     for item in toc_items:
@@ -351,6 +365,14 @@ def main():
     if nav_override:
         metadata.update(nav_override)
 
+    # 移除正文開頭的標題行（已顯示於 post-header）
+    body_md = re.sub(r'^#{1,6}\s+.+\n?', '', body_md, count=1).lstrip()
+
+    # 自動推導 subject：frontmatter 未設定時從標題抓第一個英文縮寫/專有名詞
+    if not metadata["subject"]:
+        m = re.search(r'\b([A-Z][A-Za-z0-9]*(?:\s+[A-Z][A-Za-z0-9]*)*)\b', metadata["title"])
+        metadata["subject"] = m.group(1) if m else ""
+
     # 偵測最後一行是否為 hashtag 關鍵字（如 #WFH #RemoteWork）
     hashtag_html = ""
     lines = body_md.rstrip().splitlines()
@@ -365,7 +387,7 @@ def main():
             )
             hashtag_html = f'<p class="post-tags">{tag_links}</p>'
 
-    toc_html, content_html = process_markdown_to_html_and_toc(body_md)
+    toc_html, content_html = process_markdown_to_html_and_toc(body_md, subject=metadata["subject"])
     if hashtag_html:
         content_html += "\n" + hashtag_html
 
@@ -431,7 +453,7 @@ def main():
                 <div class="post-footer">
                     <div class="post-navigation">
                         <div class="nav-buttons">
-                            <a href="{{ prev_url }}" class="btn btn-secondary">← 回到首頁</a>
+                            <a href="{{ prev_url }}" class="btn btn-secondary">{{ '← 回到首頁' if prev_url == 'index.html' else '← 上一篇文章' }}</a>
                             <a href="#" class="btn btn-top">↑ 回到頂端</a>
                             <a href="{{ next_url }}" class="btn btn-primary">下一篇文章 →</a>
                         </div>
