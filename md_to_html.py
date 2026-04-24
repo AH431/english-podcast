@@ -424,9 +424,6 @@ def main():
                     <span>{{ read_time }}</span>
                     <span>•</span>
                     <span>作者：{{ author }}</span>
-                    <span id="busuanzi_container_page_pv" style="display:none;">
-                        • 本文閱讀量 <span id="busuanzi_value_page_pv"></span> 次
-                    </span>
                 </div>
             </header>
 
@@ -459,14 +456,6 @@ def main():
                         </div>
                     </div>
 
-                    <div class="visitor-stats-group">
-                        <div class="visitor-stats">
-                            本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
-                        </div>
-                        <div class="visitor-stats">
-                            本文閱讀量：<span id="busuanzi_value_page_pv"></span> 次
-                        </div>
-                    </div>
                 </div>
 
                 <section id="comment-section">
@@ -483,7 +472,7 @@ def main():
         <p>&copy; 2026 ideaHub • Made with ❤️ in Taipei • Powered by GitHub Pages</p>
     </footer>
 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script data-goatcounter="https://GOATCOUNTER_CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>"""
 
